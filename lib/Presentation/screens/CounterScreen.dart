@@ -1,0 +1,73 @@
+import 'package:flutter/material.dart';
+
+class Counterscreen extends StatefulWidget {
+  const Counterscreen({super.key});
+
+  @override
+  State<Counterscreen> createState() => _CounterscreenState();
+}
+
+class _CounterscreenState extends State<Counterscreen> {
+  int clickCounter = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: const Text("Pantalla de Contador")),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.refresh_rounded),
+            onPressed: () {
+              setState(() {
+                clickCounter = 0;
+              });
+            },
+          ),
+        ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '$clickCounter',
+              style: const TextStyle(
+                fontSize: 160,
+                fontWeight: FontWeight.w100,
+              ),
+            ),
+            Text(
+              "Click${clickCounter == 1 ? '' : 's'}",
+              style: const TextStyle(fontSize: 25),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            shape: const StadiumBorder(),
+            onPressed: () {
+              setState(() {
+                clickCounter++;
+              });
+            },
+            child: const Icon(Icons.plus_one),
+          ),
+          const SizedBox(height: 15),
+          FloatingActionButton(
+            shape: const StadiumBorder(),
+            onPressed: () {
+              setState(() {
+                clickCounter--;
+              });
+            },
+            child: const Icon(Icons.exposure_minus_1),
+          ),
+        ],
+      ),
+    );
+  }
+}
